@@ -8,8 +8,9 @@ private:
     int accountNo;
     string password;
     double balance;
-    // dynamic array needs to be expanded if necessary
+    // dynamic array
     transaction *transactions;
+    // both fields below are for the dynamic array
     int capacity;
     int actual_size;
 
@@ -102,7 +103,14 @@ public:
             string date = tmp.getDate();
             string type = tmp.getType();
             double amount = tmp.getAmount();
-            cout << date << "        | " << type << "          | " << amount << "\n";
+            if (type == "withdraw")
+            {
+                cout << date << "        | " << type << "         | " << amount << "\n";
+            }
+            else
+            {
+                cout << date << "        | " << type << "          | " << amount << "\n";
+            }
         }
     }
 };

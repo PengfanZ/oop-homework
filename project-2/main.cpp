@@ -14,13 +14,18 @@ void pressEnter()
     }
 }
 
-//TODO: trim account
 void initialization(string *account, string *password)
 {
     cout << "\nMain Window: \n"
          << "============= \n";
     cout << "Enter Your Account No: ";
-    cin >> *account;
+    // handle non-number case
+    int tmp;
+    string str;
+    getline(cin, str);
+    stringstream(str) >> tmp;
+    *account = to_string(tmp);
+
     cout << "Enter your password: ";
     cin >> *password;
 }
@@ -121,7 +126,17 @@ void withdrawWindow(string *account, bankAccount **accounts)
 void showAllTransactionsWindow(string *account, bankAccount **accounts)
 {
     int index = stoi(*account);
+    cout << "\nMain Window --> Show All Transactions" << endl;
+    cout << "============================================================================" << endl;
+    cout << "\n\nAccount no: " << *account << endl;
+    cout << "----------------------------------------------------------------\n"
+         << "Date                            | Type             | Amount\n"
+         << "----------------------------------------------------------------\n";
     accounts[index]->showAllTransactions();
+    cout << "----------------------------------------------------------------\n"
+         << "Press enter to go back to the Main Window\n";
+    cin.ignore();
+    pressEnter();
     mainWindow(account, accounts);
 }
 
@@ -181,13 +196,13 @@ int main()
     //login window
     while (true)
     {
-        //TODO: trim account
         initialization(account, password);
         if (authentication(*account, *password, accounts, capacity))
         {
             // cout << "logged in \n";
             break;
         }
+        cin.ignore();
     }
 
     mainWindow(account, accounts);
@@ -202,3 +217,33 @@ int main()
 
     return 0;
 }
+
+// void trimWhiteSpaces(string *account)
+// {
+//     if ((*account).substr(0, 1) == " ")
+//     {
+//         int start = 1;
+//         for (int i = 1; i < (*account).length(); i++)
+//         {
+//             if ((*account).substr(i, i + 1) != " ")
+//             {
+//                 break;
+//             }
+//             start++;
+//         }
+//         *account = (*account).substr(start);
+//     }
+//     if ((*account).substr((*account).length() - 1) == " ")
+//     {
+//         int end = (*account).length() - 1;
+//         for (int i = end; i > 0; i--)
+//         {
+//             if ((*account).substr(0, end) != " ")
+//             {
+//                 break;
+//             }
+//             end--;
+//         }
+//         *account = (*account).substr(0, end);
+//     }
+// }
