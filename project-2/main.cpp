@@ -217,33 +217,3 @@ int main()
 
     return 0;
 }
-
-// void trimWhiteSpaces(string *account)
-// {
-//     if ((*account).substr(0, 1) == " ")
-//     {
-//         int start = 1;
-//         for (int i = 1; i < (*account).length(); i++)
-//         {
-//             if ((*account).substr(i, i + 1) != " ")
-//             {
-//                 break;
-//             }
-//             start++;
-//         }
-//         *account = (*account).substr(start);
-//     }
-//     if ((*account).substr((*account).length() - 1) == " ")
-//     {
-//         int end = (*account).length() - 1;
-//         for (int i = end; i > 0; i--)
-//         {
-//             if ((*account).substr(0, end) != " ")
-//             {
-//                 break;
-//             }
-//             end--;
-//         }
-//         *account = (*account).substr(0, end);
-//     }
-// }
